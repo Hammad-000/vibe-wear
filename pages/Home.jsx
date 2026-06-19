@@ -113,7 +113,7 @@ useEffect(() => {
           /* Products Grid mapped from API data state */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {pro.map((product) => (
-              <div key={product.id} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-xl hover:border-cyan-500/40 transition-all duration-300 flex flex-col group">
+              <div key={product.id} className="bg-white/5 border border-white/10 cursor-pointer rounded-2xl overflow-hidden shadow-xl hover:border-cyan-500/40 transition-all duration-300 flex flex-col group">
                 <div className="aspect-[4/5] bg-slate-900 relative overflow-hidden">
                   <span className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md text-cyan-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase border border-cyan-400/20 z-10">
                     {product.category?.name || "Drop"}
