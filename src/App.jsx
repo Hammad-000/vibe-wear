@@ -5,6 +5,9 @@ import "./index.css";
 
 import Home from "../pages/Home";
 import About from "../pages/About";
+import  Error from "../pages/Error"
+import  Checkout from "../pages/Checkout"
+import  Contact from "../pages/Contact"
 
 function App() {
   const { theme, toggleTheme } = useTheme(); 
@@ -32,6 +35,11 @@ function App() {
             <span className="hidden sm:inline">About</span>
           </Link>
 
+          <Link to="/contact" className="flex items-center gap-1.5 hover:text-cyan-400 transition text-slate-600 dark:text-slate-300 dark:hover:text-cyan-400">
+            <Info className="w-4 h-4" />
+            <span className="hidden sm:inline">Contact</span>
+          </Link>
+
           {/* THEME TOGGLE BUTTON */}
           <button 
             onClick={toggleTheme} 
@@ -47,6 +55,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/Checkout" element={<Checkout />} />
+
+          <Route path="*" element={<Error />} />
+
         </Routes>
       </main>
     </BrowserRouter>
