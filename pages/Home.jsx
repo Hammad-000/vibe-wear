@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Home() {
+function Home( ) {
   const [pro, setPro] = useState([]);
   const [loading, setLoading] = useState(true);
   
@@ -23,6 +23,7 @@ function Home() {
         setLoading(false);
       });
   }, [API_PRODUCT_URL]);
+console.log(API_PRODUCT_URL);
 
   return (
     <div className="min-h-screen transition-colors duration-300 bg-slate-50 text-slate-900 dark:bg-gradient-to-br dark:from-slate-950 dark:via-indigo-950 dark:to-blue-950 dark:text-white">
