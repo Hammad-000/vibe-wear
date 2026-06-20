@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
+// Sahi naam se import karein
+import useProductFilters from '../components/ProductFilters';
 
 function Store() {
-  // 🌟 FIX 1: Missing states initialize kar di hain
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,11 +22,9 @@ function Store() {
     fetch(STORE_PRODUCT_URL)
       .then((res) => res.json())
       .then((json) => {
-        // Safe check: handle arrays directly or check inside nested object keys (.products)
         const data = Array.isArray(json) ? json : json.products || [];
-        // 🌟 FIX 2: setPro ko badal kar setProducts kiya hai
-        setProducts(data);    
-        setLoading(false);  
+        setProducts(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error("Something is not working:", err);
@@ -33,37 +32,26 @@ function Store() {
       });
   }, [STORE_PRODUCT_URL]);
 
-  console.log(STORE_PRODUCT_URL);
+  const filteredProducts = useProductFilters(products, {
+    search,
+    selectedCategory,
+    minRating,
+    sortBy
+  });
+
+  if (!STORE_PRODUCT_URL) {
+    return (
+      <div className="text-center py-20 text-red-500 font-bold">
+        Error: VITE_STORE_PRODUCT_URL is missing in .env file!
+      </div>
+    );
+  }
 
   const categories = ['All', 'Hoodies', 'Tees', 'Pants', 'Shoes', 'Accessories'];
 
-  // FILTER & SORT ENGINE
-  const filteredProducts = useMemo(() => {
-    if (!Array.isArray(products)) return [];
-
-    return products.filter(product => {
-      // 🌟 API Property Fallbacks: supports both product.name and product.title
-      const titleText = product.name || product.title || '';
-      const matchesSearch = titleText.toLowerCase().includes(search.toLowerCase());
-      
-      // Handles nested categories object or pure string layouts
-      const productCat = product.category?.name || product.category || '';
-      const matchesCategory = selectedCategory === 'All' || 
-        productCat.toLowerCase() === selectedCategory.toLowerCase();
-      
-      const matchesRating = (product.rating || 5) >= minRating;
-      return matchesSearch && matchesCategory && matchesRating;
-    }).sort((a, b) => {
-      if (sortBy === 'PRICE_LOW') return a.price - b.price;
-      if (sortBy === 'PRICE_HIGH') return b.price - a.price;
-      if (sortBy === 'RATING') return (b.rating || 0) - (a.rating || 0);
-      return 0; 
-    });
-  }, [products, search, selectedCategory, minRating, sortBy]); 
-      
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-gradient-to-br dark:from-slate-950 dark:via-indigo-950 dark:to-blue-950 dark:text-white transition-colors duration-300 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-      
+
       {/* HEADER BAR */}
       <div className="max-w-7xl mx-auto mb-10 border-b border-neutral-200 dark:border-white/5 pb-6">
         <h1 className="text-3xl font-black tracking-tighter uppercase">
@@ -76,14 +64,14 @@ function Store() {
 
       {/* CORE STORE GRID */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
+
         {/* ================= ASIDE SIDEBAR FILTERS ================= */}
         <aside className="lg:col-span-3 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-6 rounded-2xl space-y-6 shadow-sm sticky top-28">
-          
+
           <div>
             <h3 className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white mb-3">Search Drop</h3>
             <div className="relative">
-              <input 
+              <input
                 type="text"
                 placeholder="Type keywords..."
                 value={search}
@@ -101,7 +89,7 @@ function Store() {
           {/* SORT MECHANISM */}
           <div>
             <h3 className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white mb-3">Sort Content</h3>
-            <select 
+            <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-neutral-200 dark:border-white/10 text-xs focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-500 transition-colors cursor-pointer"
@@ -123,11 +111,10 @@ function Store() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium uppercase tracking-wide transition-all flex justify-between items-center ${
-                    selectedCategory.toLowerCase() === cat.toLowerCase()
-                      ? 'bg-neutral-900 text-white dark:bg-cyan-500 dark:text-slate-950 font-bold' 
+                  className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium uppercase tracking-wide transition-all flex justify-between items-center ${selectedCategory.toLowerCase() === cat.toLowerCase()
+                      ? 'bg-neutral-900 text-white dark:bg-cyan-500 dark:text-slate-950 font-bold'
                       : 'text-neutral-500 dark:text-slate-400 hover:bg-neutral-100 dark:hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <span>{cat}</span>
                   {selectedCategory.toLowerCase() === cat.toLowerCase() && <span className="text-[9px]">●</span>}
@@ -146,9 +133,8 @@ function Store() {
                 <button
                   key={star}
                   onClick={() => setMinRating(minRating === star ? 0 : star)}
-                  className={`text-lg p-1.5 rounded-lg transition-colors ${
-                    star <= minRating ? 'text-amber-400 bg-amber-500/5' : 'text-neutral-300 dark:text-slate-700'
-                  }`}
+                  className={`text-lg p-1.5 rounded-lg transition-colors ${star <= minRating ? 'text-amber-400 bg-amber-500/5' : 'text-neutral-300 dark:text-slate-700'
+                    }`}
                 >
                   ★
                 </button>
@@ -175,21 +161,20 @@ function Store() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProducts.map((product) => {
-                // Runtime safety parsing fields
                 const displayImage = product.images?.[0] || product.img || "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500";
                 const displayTitle = product.name || product.title || "No Title Available";
                 const displayCategory = product.category?.name || product.category || "Apparel";
 
                 return (
-                  <div 
-                    key={product.id} 
+                  <div
+                    key={product.id}
                     className="bg-white dark:bg-slate-950/40 border border-neutral-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-sm hover:border-neutral-400 dark:hover:border-cyan-500/30 transition-all duration-300 group"
                   >
                     {/* IMAGE FRAME */}
                     <div className="aspect-[4/5] bg-neutral-100 dark:bg-slate-900 relative overflow-hidden">
-                      <img 
-                        src={displayImage} 
-                        alt={displayTitle} 
+                      <img
+                        src={displayImage}
+                        alt={displayTitle}
                         className="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-500"
                         onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500"; }}
                       />

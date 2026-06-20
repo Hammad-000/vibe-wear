@@ -8,7 +8,7 @@ import About from "../pages/About";
 import  Error from "../pages/Error"
 import  Checkout from "../pages/Checkout"
 import  Contact from "../pages/Contact"
-import Footer from "../pages/Footer";
+import Footer from "../components/Footer";
 import Store from "../pages/Store";
 
 function App() {
