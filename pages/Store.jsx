@@ -32,6 +32,7 @@ function Store() {
       });
   }, [STORE_PRODUCT_URL]);
 
+  // ✅ HOOK KO CALL KIYA: Yahan se filtered data milega
   const filteredProducts = useProductFilters(products, {
     search,
     selectedCategory,
@@ -39,6 +40,7 @@ function Store() {
     sortBy
   });
 
+  // Early Return Hooks ke hamesha neeche hona chahiye (Rules of Hooks)
   if (!STORE_PRODUCT_URL) {
     return (
       <div className="text-center py-20 text-red-500 font-bold">
