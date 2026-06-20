@@ -8,6 +8,8 @@ import About from "../pages/About";
 import  Error from "../pages/Error"
 import  Checkout from "../pages/Checkout"
 import  Contact from "../pages/Contact"
+import Footer from "../pages/Footer";
+import Store from "../pages/Store";
 
 function App() {
   const { theme, toggleTheme } = useTheme(); 
@@ -28,6 +30,11 @@ function App() {
           <Link to="/" className="flex items-center gap-1.5 hover:text-cyan-400 transition text-slate-600 dark:text-slate-300 dark:hover:text-cyan-400">
             <HomeIcon className="w-4 h-4" />
             <span className="hidden sm:inline">Home</span>
+          </Link>
+          
+          <Link to="/Store" className="flex items-center gap-1.5 hover:text-cyan-400 transition text-slate-600 dark:text-slate-300 dark:hover:text-cyan-400">
+            <Info className="w-4 h-4" />
+            <span className="hidden sm:inline">Store</span>
           </Link>
           
           <Link to="/about" className="flex items-center gap-1.5 hover:text-cyan-400 transition text-slate-600 dark:text-slate-300 dark:hover:text-cyan-400">
@@ -54,6 +61,7 @@ function App() {
       <main className="min-h-[70vh]">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/Checkout" element={<Checkout />} />
@@ -62,6 +70,7 @@ function App() {
 
         </Routes>
       </main>
+      <Footer/>
     </BrowserRouter>
   );
 }

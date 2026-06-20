@@ -25,7 +25,6 @@ function Home() {
   }, [API_PRODUCT_URL]);
 
   return (
-    /* 🌟 ADJUSTED FOR DUAL THEME: Light mode mein soft slate hoga, aur dark mode mein automatic cyber gradient ban jayega */
     <div className="min-h-screen transition-colors duration-300 bg-slate-50 text-slate-900 dark:bg-gradient-to-br dark:from-slate-950 dark:via-indigo-950 dark:to-blue-950 dark:text-white">
       
       {/* 1. HERO SECTION */}

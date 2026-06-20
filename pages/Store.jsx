@@ -1,0 +1,211 @@
+import React, { useState,  useEffect, useMemo } from 'react';
+
+
+ const STORE_PRODUCT_URL = import.meta.env.VITE_STORE_PRODUCT_URLS;
+ 
+
+
+function Store() {
+
+
+
+  const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [minRating, setMinRating] = useState(0);
+  const [sortBy, setSortBy] = useState('DEFAULT');
+ 
+
+  const categories = ['All', 'Hoodies', 'Tees', 'Pants', 'Shoes', 'Accessories'];
+
+  const filteredProducts = useMemo(() => {
+    return STORE_PRODUCT_URL.filter(product => {
+      const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
+      const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
+      const matchesRating = product.rating >= minRating;
+      return matchesSearch && matchesCategory && matchesRating;
+    }).sort((a, b) => {
+      if (sortBy === 'PRICE_LOW') return a.price - b.price;
+      if (sortBy === 'PRICE_HIGH') return b.price - a.price;
+      if (sortBy === 'RATING') return b.rating - a.rating;
+      return 0; 
+    });
+  }, [search, selectedCategory, minRating, sortBy]);
+
+  useEffect(() => {
+    if (!STORE_PRODUCT_URL) {
+      console.error("VITE_PRODUCT_URL is not define in.env ");
+      return;
+    }
+
+    fetch(STORE_PRODUCT_URL)
+      .then((res) => res.json())
+      .then((json) => {
+        setPro(json);    
+        setLoading(false);  
+      })
+      .catch((err) => {
+        console.error("Something is not working:", err);
+        setLoading(false);
+      });
+  }, [STORE_PRODUCT_URL]);
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-gradient-to-br dark:from-slate-950 dark:via-indigo-950 dark:to-blue-950 dark:text-white transition-colors duration-300 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      
+      {/* HEADER BAR */}
+      <div className="max-w-7xl mx-auto mb-10 border-b border-neutral-200 dark:border-white/5 pb-6">
+        <h1 className="text-3xl font-black tracking-tighter uppercase">
+          THE DROP <span className="text-neutral-400 dark:text-cyan-400">/ ALL ITEMS</span>
+        </h1>
+        <p className="text-xs text-neutral-500 dark:text-slate-400 mt-1 uppercase tracking-widest">
+          Showing {filteredProducts.length} results from sub-culture vault
+        </p>
+      </div>
+
+      {/* CORE STORE GRID */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        {/* ================= ASIDE SIDEBAR FILTERS ================= */}
+        <aside className="lg:col-span-3 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-6 rounded-2xl space-y-6 shadow-sm sticky top-28">
+          
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white mb-3">Search Drop</h3>
+            <div className="relative">
+              <input 
+                type="text"
+                placeholder="Type keywords..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-neutral-200 dark:border-white/10 text-xs focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-500 transition-colors"
+              />
+              {search && (
+                <button onClick={() => setSearch('')} className="absolute right-3 top-2.5 text-xs opacity-50 hover:opacity-100">✕</button>
+              )}
+            </div>
+          </div>
+
+          <hr className="border-neutral-100 dark:border-white/5" />
+
+          {/* SORT MECHANISM */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white mb-3">Sort Content</h3>
+            <select 
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-neutral-200 dark:border-white/10 text-xs focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-500 transition-colors cursor-pointer"
+            >
+              <option value="DEFAULT">DEFAULT ARRIVALS</option>
+              <option value="PRICE_LOW">PRICE: LOW TO HIGH</option>
+              <option value="PRICE_HIGH">PRICE: HIGH TO LOW</option>
+              <option value="RATING">HIGHEST RATED</option>
+            </select>
+          </div>
+
+          <hr className="border-neutral-100 dark:border-white/5" />
+
+          {/* CATEGORY SELECTOR */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white mb-3">Garment Silhouette</h3>
+            <div className="space-y-1.5">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium uppercase tracking-wide transition-all flex justify-between items-center ${
+                    selectedCategory === cat 
+                      ? 'bg-neutral-900 text-white dark:bg-cyan-500 dark:text-slate-950 font-bold' 
+                      : 'text-neutral-500 dark:text-slate-400 hover:bg-neutral-100 dark:hover:bg-white/5'
+                  }`}
+                >
+                  <span>{cat}</span>
+                  {selectedCategory === cat && <span className="text-[9px]">●</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <hr className="border-neutral-100 dark:border-white/5" />
+
+          {/* RATING FILTER */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white mb-3">Minimum Tier Review</h3>
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  onClick={() => setMinRating(minRating === star ? 0 : star)}
+                  className={`text-lg p-1.5 rounded-lg transition-colors ${
+                    star <= minRating ? 'text-amber-400 bg-amber-500/5' : 'text-neutral-300 dark:text-slate-700'
+                  }`}
+                >
+                  ★
+                </button>
+              ))}
+            </div>
+          </div>
+
+        </aside>
+
+        {/* ================= MAIN PRODUCT VISUAL MATRIX ================= */}
+        <main className="lg:col-span-9">
+          {filteredProducts.length === 0 ? (
+            <div className="text-center py-20 bg-white dark:bg-white/5 rounded-3xl border border-dashed border-neutral-200 dark:border-white/10">
+              <span className="text-3xl">📭</span>
+              <h3 className="text-base font-black mt-3 uppercase tracking-wider">No Drops Found</h3>
+              <p className="text-xs text-neutral-500 dark:text-slate-400 mt-1">Try resetting your aside matrix parameters.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProducts.map((product) => (
+                <div 
+                  key={product.id} 
+                  className="bg-white dark:bg-slate-950/40 border border-neutral-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-sm hover:border-neutral-400 dark:hover:border-cyan-500/30 transition-all duration-300 group"
+                >
+                  {/* IMAGE FRAME */}
+                  <div className="aspect-[4/5] bg-neutral-100 dark:bg-slate-900 relative overflow-hidden">
+                    <img 
+                      src={product.img} 
+                      alt={product.name} 
+                      className="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-3 left-3 bg-neutral-900/90 text-white dark:bg-slate-950/80 text-[9px] font-bold tracking-widest px-2.5 py-1 rounded-md uppercase border border-white/10">
+                      {product.category}
+                    </span>
+                  </div>
+
+                  {/* DETAILS CARD */}
+                  <div className="p-5 space-y-2">
+                    <div className="flex justify-between items-start gap-2">
+                      <h3 className="font-black text-sm tracking-tight text-neutral-900 dark:text-white line-clamp-2 uppercase">
+                        {product.name}
+                      </h3>
+                      <span className="font-black text-sm text-neutral-900 dark:text-cyan-400">
+                        ${product.price}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between items-center pt-2 border-t border-neutral-100 dark:border-white/5">
+                      {/* STAR SCORE SYSTEM */}
+                      <div className="flex text-amber-400 text-xs">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <span key={i}>{i < product.rating ? '★' : '☆'}</span>
+                        ))}
+                      </div>
+                      <button className="text-[10px] font-black tracking-widest uppercase py-1.5 px-3 bg-neutral-950 text-white dark:bg-white dark:text-slate-950 rounded-lg hover:bg-neutral-800 dark:hover:bg-cyan-400 dark:hover:text-slate-950 transition-colors cursor-pointer">
+                        + ADD
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              ))}
+            </div>
+          )}
+        </main>
+
+      </div>
+    </div>
+  );
+}
+
+export default Store;
