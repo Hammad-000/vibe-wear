@@ -115,7 +115,7 @@ console.log(API_PRODUCT_URL);
         ) : (
           /* Products Grid mapped from API data state */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pro.map((product) => (
+            {pro.slice(0,20).map((product) => (
               <div key={product.id} className="bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 cursor-pointer rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:border-neutral-400 dark:hover:border-cyan-500/40 transition-all duration-300 flex flex-col group">
                 <div className="aspect-[4/5] bg-neutral-100 dark:bg-slate-900 relative overflow-hidden">
                   <span className="absolute top-3 left-3 bg-white/90 dark:bg-slate-950/80 backdrop-blur-md text-neutral-800 dark:text-cyan-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase border border-neutral-200 dark:border-cyan-400/20 z-10 shadow-sm">
