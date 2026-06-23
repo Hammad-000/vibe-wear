@@ -5,7 +5,6 @@ import "./index.css";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Error from "../pages/Error";
-import Checkout from "../pages/Checkout";
 import Contact from "../pages/Contact";
 import Store from "../pages/Store";
 import Navbar from "../components/Navbar";
@@ -30,9 +29,7 @@ function App() {
             <Route path="/store" element={<Store />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/checkout" element={<Checkout />} />
             <Route path="/cart" element={<Cart />} />
-
             <Route path="*" element={<Error />} />
           </Routes>
         </main>

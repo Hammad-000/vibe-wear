@@ -40,6 +40,7 @@ function Navbar() {
           <span className="hidden sm:inline">Cart</span>
         </Link>
 
+
         <button 
           onClick={toggleTheme} 
           className="p-2 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:text-cyan-400 transition cursor-pointer"

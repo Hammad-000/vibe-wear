@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CreditCard, Truck, ShoppingBag, ChevronRight, CheckCircle2 } from 'lucide-react';
 
-function Checkout() {
+function Cart() {
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [isOrdered, setIsOrdered] = useState(false);
+
 
  
   const subtotal = 4897;
@@ -175,4 +176,4 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+export default Cart;
