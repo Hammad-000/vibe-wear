@@ -36,7 +36,7 @@ function Navbar() {
         </Link>
 
         <Link to="/cart" className="flex items-center gap-1.5 hover:text-cyan-400 transition text-slate-600 dark:text-slate-300 dark:hover:text-cyan-400">
-          <Phone className="w-4 h-4" />
+         <ShoppingCart className="w-5 h-5 text-cyan-400" />
           <span className="hidden sm:inline">Cart</span>
         </Link>
 
