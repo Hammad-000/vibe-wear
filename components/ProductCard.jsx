@@ -1,10 +1,15 @@
-import React from 'react';
+import React ,{useState} from 'react';
+
+
+
 
 function ProductCard({ product }) {
-  // Fallbacks फ़ॉर सेफ डेटा रेंडरिंग
   const displayImage = product.images?.[0] || product.img || "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500";
   const displayTitle = product.name || product.title || "No Title Available";
   const displayCategory = product.category?.name || product.category || "Apparel";
+  const [cart,setCart] = useState()
+
+
 
   return (
     <div className="bg-white dark:bg-slate-950/40 border border-neutral-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-sm hover:border-neutral-400 dark:hover:border-cyan-500/30 transition-all duration-300 group">
@@ -41,7 +46,9 @@ function ProductCard({ product }) {
             ))}
           </div>
           
-          <button className="text-[10px] font-black tracking-widest uppercase py-1.5 px-3 bg-neutral-950 text-white dark:bg-white dark:text-slate-950 rounded-lg hover:bg-neutral-800 dark:hover:bg-cyan-400 dark:hover:text-slate-950 transition-colors cursor-pointer">
+          <button onClick={()=>  {console.log("add")
+            setCart(cart + 1);
+          }}  className="text-[10px] font-black tracking-widest uppercase py-1.5 px-3 bg-neutral-950 text-white dark:bg-white dark:text-slate-950 rounded-lg hover:bg-neutral-800 dark:hover:bg-cyan-400 dark:hover:text-slate-950 transition-colors cursor-pointer">
             + ADD
           </button>
         </div>
