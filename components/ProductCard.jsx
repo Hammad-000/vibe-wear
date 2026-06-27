@@ -12,7 +12,7 @@ function ProductCard({ product }) {
 
 
   return (
-    <div className="bg-white dark:bg-slate-950/40 border border-neutral-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-sm hover:border-neutral-400 dark:hover:border-cyan-500/30 transition-all duration-300 group">
+    <div className="bg-white cursor-pointer dark:bg-slate-950/40 border border-neutral-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-sm hover:border-neutral-400 dark:hover:border-cyan-500/30 transition-all duration-300 group">
       
       {/* IMAGE FRAME */}
       <div className="aspect-[4/5] bg-neutral-100 dark:bg-slate-900 relative overflow-hidden">
@@ -34,7 +34,7 @@ function ProductCard({ product }) {
             {displayTitle}
           </h3>
           <span className="font-black text-sm text-neutral-900 dark:text-cyan-400">
-            ${product.price || 0}
+            Rs {product.price || 0}
           </span>
         </div>
 

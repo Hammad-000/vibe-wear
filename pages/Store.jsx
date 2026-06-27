@@ -110,13 +110,13 @@ function Store() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium uppercase tracking-wide transition-all flex justify-between items-center ${selectedCategory.toLowerCase() === cat.toLowerCase()
+                  className={`w-full cursor-pointer text-left px-3 py-2 rounded-lg text-xs font-medium uppercase tracking-wide transition-all flex justify-between items-center ${selectedCategory.toLowerCase() === cat.toLowerCase()
                     ? 'bg-neutral-900 text-white dark:bg-cyan-500 dark:text-slate-950 font-bold'
                     : 'text-neutral-500 dark:text-slate-400 hover:bg-neutral-100 dark:hover:bg-white/5'
                     }`}
                 >
                   <span>{cat}</span>
-                  {selectedCategory.toLowerCase() === cat.toLowerCase() && <span className="text-[9px]">●</span>}
+                  {selectedCategory.toLowerCase() === cat.toLowerCase() && <span className=" p-1 text-[9px]">●</span>}
                 </button>
               ))}
             </div>
