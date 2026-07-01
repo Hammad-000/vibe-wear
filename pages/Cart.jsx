@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CreditCard, Truck, ShoppingBag, ChevronRight, CheckCircle2 } from 'lucide-react';
 
-function Cart() {
+
+
+function Cart(product) {
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [isOrdered, setIsOrdered] = useState(false);
+  
 
-
- 
-  const subtotal = 4897;
+  
+  const subtotal = product.price;
   const shipping = 0; 
   const total = subtotal + shipping;
-
+  
   if (isOrdered) {
     return (
       <div className="max-w-md mx-auto px-4 py-16 text-center flex flex-col items-center justify-center">
@@ -28,6 +30,7 @@ function Cart() {
       </div>
     );
   }
+  console.log(product);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
@@ -136,12 +139,11 @@ function Cart() {
             {/* Short Mini-Items List */}
             <div className="max-h-40 overflow-y-auto space-y-3 mb-6 border-b border-slate-200 dark:border-white/10 pb-4 pr-1">
               <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-600 dark:text-slate-400 line-clamp-1">Cyberpunk Hoodie (XL) × 1</span>
-                <span className="font-semibold text-slate-800 dark:text-white">${subtotal - 1898}</span>
+                <span className="font-semibold text-slate-800 dark:text-white">${subtotal }</span>
               </div>
               <div className="flex justify-between items-center text-sm">
                 <span className="text-slate-600 dark:text-slate-400 line-clamp-1">Neon Cargo Pants (L) × 1</span>
-                <span className="font-semibold text-slate-800 dark:text-white">$1,898</span>
+                <span className="font-semibold text-slate-800 dark:text-white">${product.price}</span>
               </div>
             </div>
 
