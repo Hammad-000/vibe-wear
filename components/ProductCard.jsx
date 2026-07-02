@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ProductCard({ product }) {
+function ProductCard({ product, currentQty, onAddToCart }) {
   const displayImage =
     product.images?.[0] ||
     product.img ||
@@ -34,11 +34,11 @@ function ProductCard({ product }) {
         </span>
 
         {/* Floating Cart Counter Badge (Shows only if items added) */}
-        {cart > 0 && (
+        {/* {cart > 0 && (
           <span className="absolute top-3 right-3 bg-cyan-500 text-slate-950 text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-lg animate-scaleIn">
             {cart}
           </span>
-        )}
+        )} */}
       </div>
 
       {/* COMPACT DETAILS BLOCK */}
@@ -73,7 +73,7 @@ function ProductCard({ product }) {
           {/* Premium Button with SVG Basket Icon */}
           <button
             onClick={(e) => {
-              e.stopPropagation(); // Prevents card-click triggers
+              e.stopPropagation(); 
               setCart(cart + 1);
             }}
             className="flex items-center gap-1.5 px-3.5 py-2 text-[11px] font-bold uppercase rounded-xl bg-neutral-950 text-white dark:bg-white dark:text-slate-950 hover:bg-neutral-800 dark:hover:bg-cyan-400 dark:hover:text-slate-950 transition-all duration-200 active:scale-95 cursor-pointer shadow-sm hover:shadow-md"
@@ -90,6 +90,7 @@ function ProductCard({ product }) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
             </svg>
             <span>{cart > 0 ? "Add More" : "Add to Bag"}</span>
+            
           </button>
         </div>
 
