@@ -156,10 +156,8 @@ function Home() {
                   </div>
                   
                   <div className="flex items-center justify-between mt-auto pt-2">
-                    <span className="text-neutral-950 dark:text-white font-black text-xl tracking-tight">${product.price}</span>
-                    <button className="bg-neutral-950 text-white dark:bg-cyan-400 dark:text-slate-950 px-4 py-2 rounded-xl text-xs font-black tracking-wider uppercase transition-all duration-300 hover:bg-neutral-800 dark:hover:bg-cyan-300 active:scale-95 cursor-pointer">
-                      Add to Cart
-                    </button>
+                    <span className="text-neutral-950 dark:text-white font-black text-xl tracking-tight">Rs  {product.price}</span>
+                   
                   </div>
                 </div>
               </div>
