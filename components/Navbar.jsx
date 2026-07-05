@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import { ShoppingBag, ShoppingCart, Info, Home as HomeIcon, Phone, Sun, Moon } from "lucide-react"; 
 import { useTheme } from "../src/context/ThemeContext"; 
 
-function Navbar() {
+function Navbar( setCart) {
   const { theme, toggleTheme } = useTheme(); 
   
-  // यहाँ हमने cart को 0 डिफाइन कर दिया ताकि एरर खत्म हो जाए।
-  // बाद में जब आप Context API या Redux बनाएंगे, तो इसे वहाँ से कनेक्ट कर सकते हैं।
-  const cart = 0; 
+  const cart =  setCart; 
 
   return (
     <nav className="w-full fixed top-0 left-0 z-50 backdrop-blur-md bg-white/70 dark:bg-slate-950/70 border-b border-neutral-200/50 dark:border-white/5 transition-colors duration-300">
@@ -40,6 +38,11 @@ function Navbar() {
           <Link to="/contact" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition">
             <Phone className="w-4 h-4" />
             <span className="hidden md:inline">Contact</span>
+          </Link>
+
+          <Link to="/dashboard" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition">
+            <Phone className="w-4 h-4" />
+            <span className="hidden md:inline">Dashboard</span>
           </Link>
 
           {/* INTERACTIVE CART ICON */}
