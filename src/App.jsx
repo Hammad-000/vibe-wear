@@ -10,6 +10,7 @@ import Store from "../pages/Store";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Cart from "../pages/cart";
+import Dashboard from "../pages/Dashboard";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>
