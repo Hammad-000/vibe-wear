@@ -9,7 +9,7 @@ import Contact from "../pages/Contact";
 import Store from "../pages/Store";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Cart from "../pages/cart";
+import Cart from "../pages/Cart";
 import Dashboard from "../pages/Dashboard";
 
 
