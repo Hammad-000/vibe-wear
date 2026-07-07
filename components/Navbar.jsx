@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ShoppingBag, ShoppingCart, Info, Home as HomeIcon, Phone, Sun, Moon } from "lucide-react"; 
 import { useTheme } from "../src/context/ThemeContext"; 
 
-function Navbar( setCart) {
+function Navbar( setCart, product) {
   const { theme, toggleTheme } = useTheme(); 
   
   const cart =  setCart; 
@@ -53,6 +53,7 @@ function Navbar( setCart) {
                 <span className="absolute -top-2 -right-2.5 bg-cyan-500 text-slate-950 text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-md animate-bounce">
                   {cart}
                 </span>
+                
               )}
             </div>
             <span className="hidden sm:inline">Cart</span>

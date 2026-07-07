@@ -75,6 +75,7 @@ function ProductCard({ product, currentQty, onAddToCart }) {
             onClick={(e) => {
               e.stopPropagation(); 
               setCart(cart + 1);
+              console.log(product.title)
             }}
             className="flex items-center gap-1.5 px-3.5 py-2 text-[11px] font-bold uppercase rounded-xl bg-neutral-950 text-white dark:bg-white dark:text-slate-950 hover:bg-neutral-800 dark:hover:bg-cyan-400 dark:hover:text-slate-950 transition-all duration-200 active:scale-95 cursor-pointer shadow-sm hover:shadow-md"
           >

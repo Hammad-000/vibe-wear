@@ -5,9 +5,6 @@ import ProductCard from '../components/ProductCard';
 function Store() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // ग्लोबल कार्ट स्टेट: यहाँ सभी एडेड प्रोडक्ट्स का डेटा स्टोर होगा
-  // { productId: quantity } की फॉर्म में स्टोर होगा, जैसे: { 1: 2, 5: 1 }
   const [cartItems, setCartItems] = useState({});
 
   const [search, setSearch] = useState('');
@@ -43,15 +40,15 @@ function Store() {
     sortBy
   });
 
-  // कार्ट में आइटम जोड़ने का हैंडलर फ़ंक्शन
   const handleAddToCart = (productId) => {
     setCartItems((prevItems) => ({
       ...prevItems,
       [productId]: (prevItems[productId] || 0) + 1,
-    }));
+    }
+    
+  ));
   };
 
-  // नैवबार या हेडर को दिखाने के लिए कुल कितने आइटम्स कार्ट में हैं
   const totalCartCount = Object.values(cartItems).reduce((sum, qty) => sum + qty, 0);
 
   if (!STORE_PRODUCT_URL) {
@@ -78,7 +75,6 @@ function Store() {
           </p>
         </div>
         
-        {/* लाइव कार्ट स्टेटस काउंटर जो स्टोर पर ही दिख जाएगा */}
         {totalCartCount > 0 && (
           <div className="bg-neutral-900 text-white dark:bg-white dark:text-slate-950 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-sm border border-white/10">
             Bag: <span className="text-cyan-400 dark:text-indigo-600 font-black">{totalCartCount} items</span>
@@ -184,11 +180,10 @@ function Store() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProducts.map((product) => (
                 <ProductCard 
-                  key={product.id} 
-                  product={product} 
-                  // कार्ड को स्टेट और फ़ंक्शन प्रॉप्स के ज़रिए पास किया
-                  currentQty={cartItems[product.id] || 0}
-                  onAddToCart={handleAddToCart}
+                key={product.id} 
+                product={product} 
+                currentQty={cartItems[product.id] || 0}
+                onAddToCart={handleAddToCart}
                 />
               ))}
             </div>
