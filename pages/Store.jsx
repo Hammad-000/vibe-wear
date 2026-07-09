@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import useProductFilters from '../components/ProductFilters';
 import ProductCard from '../components/ProductCard'; 
 
-function Store() {
+function Store({ cartItems, onAddToCart }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cartItems, setCartItems] = useState({});
+
+  // REMOVED: Duplicate local cartItems state declaration
 
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -40,16 +41,9 @@ function Store() {
     sortBy
   });
 
-  const handleAddToCart = (productId) => {
-    setCartItems((prevItems) => ({
-      ...prevItems,
-      [productId]: (prevItems[productId] || 0) + 1,
-    }
-    
-  ));
-  };
+  // REMOVED: Duplicate local handleAddToCart handler
 
-  const totalCartCount = Object.values(cartItems).reduce((sum, qty) => sum + qty, 0);
+  const totalCartCount = Object.values(cartItems || {}).reduce((sum, qty) => sum + qty, 0);
 
   if (!STORE_PRODUCT_URL) {
     return (
@@ -180,10 +174,10 @@ function Store() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProducts.map((product) => (
                 <ProductCard 
-                key={product.id} 
-                product={product} 
-                currentQty={cartItems[product.id] || 0}
-                onAddToCart={handleAddToCart}
+                  key={product.id} 
+                  product={product} 
+                  currentQty={cartItems?.[product.id] || 0}
+                  onAddToCart={onAddToCart} 
                 />
               ))}
             </div>

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { ShoppingBag, ShoppingCart, Info, Home as HomeIcon, Phone, Sun, Moon } from "lucide-react"; 
+import { ShoppingBag, ShoppingCart, Info, Home as HomeIcon, Phone, Sun, Moon, LayoutDashboard } from "lucide-react"; 
 import { useTheme } from "../src/context/ThemeContext"; 
 
-function Navbar( setCart, product) {
+function Navbar({ cartCount }) {
   const { theme, toggleTheme } = useTheme(); 
-  
-  const cart =  setCart; 
 
   return (
     <nav className="w-full fixed top-0 left-0 z-50 backdrop-blur-md bg-white/70 dark:bg-slate-950/70 border-b border-neutral-200/50 dark:border-white/5 transition-colors duration-300">
@@ -29,6 +27,12 @@ function Navbar( setCart, product) {
             <ShoppingBag className="w-4 h-4" />
             <span className="hidden md:inline">Store</span>
           </Link>
+
+          {/* DASHBOARD LINK */}
+          <Link to="/dashboard" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition">
+            <LayoutDashboard className="w-4 h-4" />
+            <span className="hidden md:inline">Dashboard</span>
+          </Link>
           
           <Link to="/about" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition">
             <Info className="w-4 h-4" />
@@ -40,20 +44,16 @@ function Navbar( setCart, product) {
             <span className="hidden md:inline">Contact</span>
           </Link>
 
-          <Link to="/dashboard" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition">
-            <Phone className="w-4 h-4" />
-            <span className="hidden md:inline">Dashboard</span>
-          </Link>
-
-          {/* INTERACTIVE CART ICON */}
+          {/* CART CONTAINER */}
           <Link to="/cart" className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition relative py-2">
             <div className="relative">
               <ShoppingCart className="w-5 h-5" />
-              {cart > 0 && (
-                <span className="absolute -top-2 -right-2.5 bg-cyan-500 text-slate-950 text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-md animate-bounce">
-                  {cart}
+              
+              {/* FIXED NOTIFICATION BADGE */}
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 transform translate-x-1/4 -translate-y-1/4 bg-cyan-500 text-slate-950 text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-md text-center border border-white dark:border-slate-950">
+                  {cartCount}
                 </span>
-                
               )}
             </div>
             <span className="hidden sm:inline">Cart</span>
