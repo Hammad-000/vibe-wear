@@ -105,7 +105,7 @@ function About() {
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {values.map((val) => (
-        <div key={val.id} className="bg-white dark:bg-slate-950/30 border border-neutral-200 dark:border-white/10 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-neutral-950 dark:hover:border-cyan-400/40 transition-all duration-500 group relative overflow-hidden">
+        <div key={val.id} className="bg-white cursor-pointer dark:bg-slate-950/30 border border-neutral-200 dark:border-white/10 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-neutral-950 dark:hover:border-cyan-400/40 transition-all duration-500 group relative overflow-hidden">
           
           {/* Small top badge indicator */}
           <div className="w-10 h-10 rounded-xl bg-neutral-100 text-neutral-950 dark:bg-cyan-500/10 dark:text-cyan-400 flex items-center justify-center font-black text-sm mb-8 group-hover:bg-neutral-950 group-hover:text-white dark:group-hover:bg-cyan-400 dark:group-hover:text-slate-950 transition-all duration-300 shadow-inner">
