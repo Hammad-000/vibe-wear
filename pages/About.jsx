@@ -95,34 +95,30 @@ function About() {
         </div>
       </section>
 
-      {/* 3. CORE VALUES SECTION */}
-      <section className="bg-white dark:bg-white/[0.02] border-y border-neutral-200 dark:border-white/10 py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h3 className="text-xs font-black text-neutral-400 dark:text-cyan-400 uppercase tracking-widest">What We Stand For</h3>
-            <p className="text-3xl sm:text-4xl font-black mt-2 text-neutral-950 dark:text-white tracking-tight">OUR CORE ETHICS</p>
-          </div>
+     {/* 3. CORE VALUES SECTION */}
+<section className="bg-white dark:bg-white/[0.02] border-y border-neutral-200 dark:border-white/10 py-24 px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-20">
+      <h3 className="text-xs font-black text-neutral-400 dark:text-cyan-400 uppercase tracking-widest">What We Stand For</h3>
+      <p className="text-3xl sm:text-4xl font-black mt-2 text-neutral-950 dark:text-white tracking-tight">OUR CORE ETHICS</p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {values.map((val) => (
-              <div key={val.id} className="bg-white dark:bg-slate-950/30 border border-neutral-200 dark:border-white/10 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-neutral-950 dark:hover:border-cyan-400/40 transition-all duration-500 group relative overflow-hidden">
-                
-                {/* Tech Deco Number Indicator */}
-                <div className="absolute top-4 right-6 text-6xl font-black text-neutral-100 dark:text-white/[0.02] select-none group-hover:text-neutral-200 dark:group-hover:text-cyan-500/[0.05] transition-colors duration-500">
-                  0{val.id}
-                </div>
-
-                <div className="w-10 h-10 rounded-xl bg-neutral-100 text-neutral-950 dark:bg-cyan-500/10 dark:text-cyan-400 flex items-center justify-center font-black text-sm mb-8 group-hover:bg-neutral-950 group-hover:text-white dark:group-hover:bg-cyan-400 dark:group-hover:text-slate-950 transition-all duration-300 shadow-inner">
-                  {val.id}
-                </div>
-                
-                <h4 className="text-xl font-black text-neutral-950 dark:text-white mb-3 tracking-wide uppercase">{val.title}</h4>
-                <p className="text-neutral-500 dark:text-slate-400 text-sm leading-relaxed font-normal">{val.desc}</p>
-              </div>
-            ))}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {values.map((val) => (
+        <div key={val.id} className="bg-white dark:bg-slate-950/30 border border-neutral-200 dark:border-white/10 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-neutral-950 dark:hover:border-cyan-400/40 transition-all duration-500 group relative overflow-hidden">
+          
+          {/* Small top badge indicator */}
+          <div className="w-10 h-10 rounded-xl bg-neutral-100 text-neutral-950 dark:bg-cyan-500/10 dark:text-cyan-400 flex items-center justify-center font-black text-sm mb-8 group-hover:bg-neutral-950 group-hover:text-white dark:group-hover:bg-cyan-400 dark:group-hover:text-slate-950 transition-all duration-300 shadow-inner">
+            {val.id}
           </div>
+          
+          <h4 className="text-xl font-black text-neutral-950 dark:text-white mb-3 tracking-wide uppercase">{val.title}</h4>
+          <p className="text-neutral-500 dark:text-slate-400 text-sm leading-relaxed font-normal">{val.desc}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* 4. JOIN THE TRIBE (Call to Action) */}
       <section className="max-w-4xl mx-auto text-center py-24 px-4 space-y-8 relative overflow-hidden">
