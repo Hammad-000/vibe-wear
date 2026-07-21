@@ -139,11 +139,11 @@ function Cart(product) {
             {/* Short Mini-Items List */}
             <div className="max-h-40 overflow-y-auto space-y-3 mb-6 border-b border-slate-200 dark:border-white/10 pb-4 pr-1">
               <div className="flex justify-between items-center text-sm">
-                <span className="font-semibold text-slate-800 dark:text-white">${subtotal }</span>
+                <span className="font-semibold text-slate-800 dark:text-white">RS {subtotal }</span>
               </div>
               <div className="flex justify-between items-center text-sm">
                 <span className="text-slate-600 dark:text-slate-400 line-clamp-1">Neon Cargo Pants (L) × 1</span>
-                <span className="font-semibold text-slate-800 dark:text-white">${product.price}</span>
+                <span className="font-semibold text-slate-800 dark:text-white">Rs {product.price}</span>
               </div>
             </div>
 
