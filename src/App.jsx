@@ -12,6 +12,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Cart from "../pages/Cart";
 import Dashboard from "../pages/Dashboard";
+import Logins from "../pages/Login";
+import Login from "../pages/Login";
 
 
 function App() {
@@ -19,7 +21,7 @@ function App() {
 
   const [cartItems, setCartItems] = useState({});
   const totalCartCount = Object.values(cartItems).reduce((sum, qty) => sum + qty, 0);
-
+  
   const handleAddToCart = (productId) => {
     setCartItems((prevItems) => ({
       ...prevItems,
@@ -32,7 +34,6 @@ function App() {
       <BrowserRouter>
         
         <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-white/5 px-6 py-4">
-          {/* Passed the total count as a prop to your Navbar */}
           <Navbar cartCount={totalCartCount} />
         </header>
 
@@ -48,6 +49,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<Error />} />
           </Routes>
