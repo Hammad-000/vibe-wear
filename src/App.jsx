@@ -12,8 +12,9 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Cart from "../pages/Cart";
 import Dashboard from "../pages/Dashboard";
-import Logins from "../pages/Login";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
+
 
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<Error />} />
           </Routes>
