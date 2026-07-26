@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  ShoppingBag, 
-  ArrowRight, 
-  Heart, 
-  Truck, 
-  ShieldCheck, 
-  RotateCcw, 
-  Loader2,
-  Sparkles
-} from 'lucide-react';
+import {  ShoppingBag,  ArrowRight,  Heart,  Truck,  ShieldCheck,  RotateCcw,  Loader2, Sparkles} from 'lucide-react';
 
 function Home() {
   const [pro, setPro] = useState([]);
@@ -165,10 +156,6 @@ function Home() {
                     <p className="text-xs text-neutral-500 dark:text-slate-400 mt-1.5 line-clamp-2 leading-relaxed">
                       {product.description || "No description provided for this streetwear piece."}
                     </p>
-                  </div>
-                  
-                  <div className="flex items-center justify-between mt-auto pt-2">
-                    <span className="text-neutral-950 dark:text-white font-black text-xl tracking-tight">Rs {product.price}</span>
                   </div>
                 </div>
               </div>
