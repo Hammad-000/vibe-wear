@@ -11,40 +11,40 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-50 text-slate-900 border-t border-slate-200 dark:bg-slate-950 dark:text-white dark:border-white/5 pt-16 pb-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+    <footer className="bg-slate-50 text-slate-900 border-t border-slate-200 dark:bg-slate-950 dark:text-white dark:border-white/5 pt-10 pb-6 sm:pt-16 sm:pb-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         
         {/* TOP SECTION: BRAND & NEWSLETTER */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pb-12 border-b border-slate-200 dark:border-white/5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 pb-10 sm:pb-12 border-b border-slate-200 dark:border-white/5">
           
           {/* Brand Info */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-black tracking-wider bg-gradient-to-r from-cyan-500 to-indigo-600 dark:from-cyan-400 dark:to-indigo-400 bg-clip-text text-transparent flex items-center gap-2">
-              VIBEWEAR <ShoppingBag className="w-6 h-6 text-cyan-500 dark:text-cyan-400 inline" />
+          <div className="space-y-3 sm:space-y-4 text-left">
+            <h3 className="text-xl sm:text-2xl font-black tracking-wider bg-gradient-to-r from-cyan-500 to-indigo-600 dark:from-cyan-400 dark:to-indigo-400 bg-clip-text text-transparent flex items-center gap-2">
+              VIBEWEAR <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-500 dark:text-cyan-400 inline" />
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm max-w-sm leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm max-w-sm leading-relaxed">
               Premium streetwear drop culture. Heavyweight premium fabrics designed for the sub-culture. Match your vibe, own your style.
             </p>
           </div>
 
           {/* Quick Newsletter Signup */}
-          <div className="lg:col-span-2 space-y-4">
-            <h4 className="font-bold text-sm uppercase tracking-widest text-cyan-600 dark:text-cyan-400 flex items-center gap-2">
-              <Sparkles className="w-4 h-4" /> Join the Drop List
+          <div className="lg:col-span-2 space-y-3 sm:space-y-4">
+            <h4 className="font-bold text-xs sm:text-sm uppercase tracking-widest text-cyan-600 dark:text-cyan-400 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 shrink-0" /> Join the Drop List
             </h4>
             <p className="text-slate-600 dark:text-slate-400 text-xs">
               Subscribe to get early access to exclusive limited drops and secret sales.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-3 max-w-md">
+            <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full max-w-md">
               <input 
                 type="email" 
                 placeholder="Enter your email address..." 
-                className="flex-1 bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition shadow-sm dark:shadow-none"
+                className="w-full sm:flex-1 bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition shadow-sm dark:shadow-none"
                 required
               />
               <button 
                 type="submit"
-                className="bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold px-6 py-3 rounded-xl text-sm hover:bg-cyan-500 dark:hover:bg-cyan-400 hover:text-white dark:hover:text-slate-950 transition transform active:scale-95 cursor-pointer shrink-0 tracking-wider flex items-center justify-center gap-2 shadow-md"
+                className="w-full sm:w-auto bg-slate-950 text-white dark:bg-white dark:text-slate-950 font-bold px-6 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm hover:bg-cyan-500 dark:hover:bg-cyan-400 hover:text-white dark:hover:text-slate-950 transition transform active:scale-95 cursor-pointer shrink-0 tracking-wider flex items-center justify-center gap-2 shadow-md"
               >
                 <span>SUBSCRIBE</span>
                 <Send className="w-4 h-4" />
@@ -55,12 +55,12 @@ function Footer() {
         </div>
 
         {/* MIDDLE SECTION: QUICK LINKS */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 text-sm">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 py-8 sm:py-12 text-xs sm:text-sm">
           
           {/* Shop Column */}
           <div className="space-y-3">
             <h5 className="font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider text-xs flex items-center gap-1.5">
-              <ShoppingBag className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" /> Shop
+              <ShoppingBag className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 shrink-0" /> Shop
             </h5>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
               <li><a href="#hoodies" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition duration-200">Oversized Hoodies</a></li>
@@ -73,7 +73,7 @@ function Footer() {
           {/* Collections Column */}
           <div className="space-y-3">
             <h5 className="font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider text-xs flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" /> Collections
+              <Sparkles className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 shrink-0" /> Collections
             </h5>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
               <li><a href="#cyber" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition duration-200">Cyber Streetwear</a></li>
@@ -86,10 +86,10 @@ function Footer() {
           {/* Customer Service Column */}
           <div className="space-y-3">
             <h5 className="font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider text-xs flex items-center gap-1.5">
-              <HelpCircle className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" /> Help & Info
+              <HelpCircle className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 shrink-0" /> Help & Info
             </h5>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-              <li><a href="#track" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition duration-200 flex items-center gap-1"><Truck className="w-3 h-3 inline" /> Track Your Order</a></li>
+              <li><a href="#track" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition duration-200 flex items-center gap-1"><Truck className="w-3 h-3 inline shrink-0" /> Track Your Order</a></li>
               <li><a href="#shipping" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition duration-200">Shipping Policy</a></li>
               <li><a href="#exchange" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition duration-200">Easy 7-Day Exchange</a></li>
               <li><a href="#faqs" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition duration-200">FAQs</a></li>
@@ -97,9 +97,9 @@ function Footer() {
           </div>
 
           {/* Socials / Contact Column */}
-          <div className="space-y-3">
+          <div className="space-y-3 col-span-2 sm:col-span-1">
             <h5 className="font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider text-xs">Connect With Us</h5>
-            <div className="flex gap-2.5 text-slate-600 dark:text-slate-400">
+            <div className="flex flex-wrap gap-2.5 text-slate-600 dark:text-slate-400">
               
               {/* Instagram SVG */}
               <a href="#instagram" className="w-9 h-9 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-cyan-500/50 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 hover:text-cyan-600 dark:hover:text-cyan-400 transition duration-300 flex items-center justify-center shadow-sm dark:shadow-none" title="Instagram" aria-label="Instagram">
@@ -130,11 +130,11 @@ function Footer() {
         </div>
 
         {/* BOTTOM SECTION: COPYRIGHT */}
-        <div className="pt-8 border-t border-slate-200 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-6 sm:pt-8 border-t border-slate-200 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-slate-500 text-center sm:text-left">
           <p>
             &copy; {currentYear} VibeWear. All rights reserved. Made for sub-culture style.
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-4 sm:gap-6">
             <a href="#privacy" className="hover:text-slate-800 dark:hover:text-slate-300 hover:underline transition">Privacy Policy</a>
             <a href="#terms" className="hover:text-slate-800 dark:hover:text-slate-300 hover:underline transition">Terms of Service</a>
           </div>
