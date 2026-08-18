@@ -14,6 +14,7 @@ import Cart from "../pages/Cart";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Detail from "../components/Detail";
 
 
 
@@ -52,8 +53,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/product/:id" element={<Detail />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>

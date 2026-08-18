@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // <-- 1. Yeh import karein
 import useProductFilters from '../components/ProductFilters';
 import ProductCard from '../components/ProductCard'; 
 
 function Store({ cartItems, onAddToCart }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // REMOVED: Duplicate local cartItems state declaration
-
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [minRating, setMinRating] = useState(0);
   const [sortBy, setSortBy] = useState('DEFAULT');
   const STORE_PRODUCT_URL = import.meta.env.VITE_STORE_PRODUCT_URL;
+  
+  const navigate = useNavigate(); // <-- 2. Navigate hook initialize karein
 
   useEffect(() => {
     if (!STORE_PRODUCT_URL) {
@@ -40,8 +40,6 @@ function Store({ cartItems, onAddToCart }) {
     minRating,
     sortBy
   });
-
-  // REMOVED: Duplicate local handleAddToCart handler
 
   const totalCartCount = Object.values(cartItems || {}).reduce((sum, qty) => sum + qty, 0);
 
@@ -79,7 +77,7 @@ function Store({ cartItems, onAddToCart }) {
       {/* CORE STORE GRID */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-        {/* ================= ASIDE SIDEBAR FILTERS ================= */}
+        {/* ASIDE SIDEBAR FILTERS */}
         <aside className="lg:col-span-3 bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 p-6 rounded-2xl space-y-6 shadow-sm sticky top-28">
           <div>
             <h3 className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white mb-3">Search Drop</h3>
@@ -156,7 +154,7 @@ function Store({ cartItems, onAddToCart }) {
           </div>
         </aside>
 
-        {/* ================= MAIN PRODUCT VISUAL MATRIX ================= */}
+        {/* MAIN PRODUCT VISUAL MATRIX */}
         <main className="lg:col-span-9">
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -173,12 +171,17 @@ function Store({ cartItems, onAddToCart }) {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProducts.map((product) => (
-                <ProductCard 
+                <div 
                   key={product.id} 
-                  product={product} 
-                  currentQty={cartItems?.[product.id] || 0}
-                  onAddToCart={onAddToCart} 
-                />
+                  onClick={() => navigate(`/product/${product.id}`)} // <-- 3. Product card click pe detail route par bhejna
+                  className="cursor-pointer"
+                >
+                  <ProductCard 
+                    product={product} 
+                    currentQty={cartItems?.[product.id] || 0}
+                    onAddToCart={onAddToCart} 
+                  />
+                </div>
               ))}
             </div>
           )}
