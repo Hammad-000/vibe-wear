@@ -29,10 +29,10 @@ function Navbar({ cartCount }) {
           </Link>
 
           {/* DASHBOARD LINK */}
-          <Link to="/dashboard" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition">
+          {/* <Link to="/dashboard" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition">
             <LayoutDashboard className="w-4 h-4" />
             <span className="hidden md:inline">Dashboard</span>
-          </Link>
+          </Link> */}
           
           <Link to="/about" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 hover:text-neutral-950 dark:hover:text-cyan-400 transition">
             <Info className="w-4 h-4" />
