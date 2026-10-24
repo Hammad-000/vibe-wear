@@ -14,7 +14,6 @@ function useProductFilters(products, { search, selectedCategory, minRating, sort
           selectedCategory === 'All' ||
           productCat.toLowerCase() === selectedCategory.toLowerCase();
 
-        // Rating Filter
         const matchesRating = (product.rating || 5) >= minRating;
 
         return matchesSearch && matchesCategory && matchesRating;

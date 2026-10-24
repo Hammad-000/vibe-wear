@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // <-- 1. Yeh import karein
+import { useNavigate } from 'react-router-dom'; 
 import useProductFilters from '../components/ProductFilters';
 import ProductCard from '../components/ProductCard'; 
 
@@ -12,11 +12,11 @@ function Store({ cartItems, onAddToCart }) {
   const [sortBy, setSortBy] = useState('DEFAULT');
   const STORE_PRODUCT_URL = import.meta.env.VITE_STORE_PRODUCT_URL;
   
-  const navigate = useNavigate(); // <-- 2. Navigate hook initialize karein
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     if (!STORE_PRODUCT_URL) {
-      console.error("VITE_PRODUCT_URL defined nahi hai aapki .env file mein!");
+      console.error("VITE_PRODUCT_URL not defined ");
       setLoading(false);
       return;
     }
@@ -173,7 +173,7 @@ function Store({ cartItems, onAddToCart }) {
               {filteredProducts.map((product) => (
                 <div 
                   key={product.id} 
-                  onClick={() => navigate(`/product/${product.id}`)} // <-- 3. Product card click pe detail route par bhejna
+                  onClick={() => navigate(`/product/${product.id}`)} 
                   className="cursor-pointer"
                 >
                   <ProductCard 
