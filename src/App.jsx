@@ -1,6 +1,6 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useTheme } from "./context/ThemeContext"; 
+import { useTheme } from "./context/ThemeContext";
 import "./index.css";
 
 import Home from "../pages/Home";
@@ -11,30 +11,28 @@ import Store from "../pages/Store";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Cart from "../pages/Cart";
-import Dashboard from "../pages/Dashboard";
+// import Dashboard from "../pages/Dashboard"; //
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Detail from "../components/Detail";
 
-
-
 function App() {
-  const { theme } = useTheme(); 
+  const { theme } = useTheme();
 
   const [cartItems, setCartItems] = useState({});
   const totalCartCount = Object.values(cartItems).reduce((sum, qty) => sum + qty, 0);
-  
-  const handleAddToCart = (productId) => {
+  const handleAddToCart = (product, qty = 1) => {
+    const id = product?.id ?? product; 
     setCartItems((prevItems) => ({
       ...prevItems,
-      [productId]: (prevItems[productId] || 0) + 1,
+      [id]: (prevItems[id] || 0) + qty,
     }));
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-white dark:bg-slate-950 dark:text-white light:bg-white light:text-slate-900 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-white transition-colors duration-300">
       <BrowserRouter>
-        
+
         <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-white/5 px-6 py-4">
           <Navbar cartCount={totalCartCount} />
         </header>
@@ -42,19 +40,22 @@ function App() {
         <main className="flex-grow min-h-[70vh]">
           <Routes>
             <Route path="/" element={<Home />} />
-            
-            <Route 
-              path="/store" 
-              element={<Store cartItems={cartItems} onAddToCart={handleAddToCart} />} 
+
+            <Route
+              path="/store"
+              element={<Store cartItems={cartItems} onAddToCart={handleAddToCart} />}
             />
-            
+
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart cartItems={cartItems} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-            <Route path="/product/:id" element={<Detail />} />
+            <Route
+              path="/product/:id"
+              element={<Detail cartItems={cartItems} onAddToCart={handleAddToCart} />}
+            />
             <Route path="*" element={<Error />} />
           </Routes>
         </main>
